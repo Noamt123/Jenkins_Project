@@ -19,7 +19,13 @@ pipeline {
                                              echo "aws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" >>~/.aws/credentials
                                       """
         }
-
+      }
+    }
+    stage('check index.html') {
+      steps {
+        sh """
+                                             tidy -q -e index.html
+                                      """
       }
     }
   }
